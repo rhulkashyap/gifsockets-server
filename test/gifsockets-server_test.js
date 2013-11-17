@@ -94,9 +94,17 @@ describe('A request to a gifsockets-server', function () {
       }
 
       it('creates a GIF image', function () {
-        var expectedImage = fs.readFileSync(__dirname + '/expected-files/text.gif', 'binary');
-        console.log(encodeURIComponent(this.gifData));
-        assert.strictEqual(this.gifData, expectedImage);
+        var expectedImages = ['text.gif', 'text2.gif'];
+        var matchedAnImage = false;
+        var i = expectedImages.length;
+        while (i--) {
+          var expectedImg = fs.readFileSync(__dirname + '/expected-files/' + expectedImages[i], 'binary');
+          if (expectedImg === this.gifData) {
+            matchedAnImage = true;
+            break;
+          }
+        }
+        assert(matchedAnImage);
       });
     });
   });
