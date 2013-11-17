@@ -1,5 +1,5 @@
 {
-  "name": "nko4-console-log",
+  "name": "gifsockets-server",
   "description": "Mothereffing GIFSockets!!!",
   "version": "0.28.0",
   "homepage": "http://console-log.2013.nodeknockout.com/",
@@ -10,18 +10,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/nko4/console-log.git"
+    "url": "git://github.com/twolfson/gifsockets-server.git"
   },
   "bugs": {
-    "url": "https://github.com/nko4/console-log/issues"
+    "url": "https://github.com/twolfson/gifsockets-server/issues"
   },
   "licenses": [
     {
       "type": "UNLICENSE",
-      "url": "https://github.com/nko4/console-log/blob/master/UNLICENSE"
+      "url": "https://github.com/twolfson/gifsockets-server/blob/master/UNLICENSE"
     }
   ],
-  "main": "server.js",
+  "main": "server/app.js",
   "scripts": {
     "start": "node server.js",
     "start-phantomjs": "phantomjs lib/image-info-server/phantomjs/compose.js",
@@ -31,7 +31,6 @@
     "node": "0.10.x"
   },
   "dependencies": {
-    "nko": "*",
     "obj-extend": "~0.1.0",
     "temporary": "0.0.5",
     "async": "~0.2.7",
@@ -50,6 +49,5 @@
     "grunt-contrib-jshint": "~0.7.1",
     "grunt-curl": "~1.2.1",
     "grunt-contrib-copy": "~0.4.1"
-  },
-  "private": true
+  }
 }
