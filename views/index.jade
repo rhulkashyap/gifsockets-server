@@ -284,9 +284,9 @@ html
           //- TODO: Continue with setup of this
           //- FileReaderJS.setupClipboard(document.body, opts);
 
-          //- if (window.location.href.indexOf('localhost') !== -1) {
-          //-   $.post('/image/text', 'text=hello\nworld&foreground=' + encodeURIComponent('#BADA55'));
-          //- }
+          if (window.location.href.indexOf('localhost') !== -1) {
+            $.post('/image/text', 'text=hello\nworld&foreground=' + encodeURIComponent('#BADA55'));
+          }
         }
 
         //- TODO: We can notify user to reload page on timeout
