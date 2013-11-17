@@ -54,6 +54,7 @@
     "grunt-curl": "~1.2.1",
     "grunt-contrib-copy": "~0.4.1",
     "mocha": "~1.14.0",
-    "phantomjs-pixel-server": "~0.1.0"
+    "phantomjs-pixel-server": "~0.1.0",
+    "request": "~2.27.0"
   }
 }
