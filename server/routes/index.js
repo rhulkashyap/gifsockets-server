@@ -5,6 +5,7 @@ exports.openImage = function openImage (req, res) {
     'content-type': 'image/gif',
     'transfer-encoding': 'chunked'
   });
+  res.end('hello');
 
   req.firstConnections.push({
     res: res

@@ -38,6 +38,7 @@ describe('A request to a gifsockets-server', function () {
       done(err);
     });
     req.on('response', function (res) {
+      console.log('responded');
       that.gifRes = res;
       done();
     });
