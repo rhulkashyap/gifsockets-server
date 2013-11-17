@@ -42,7 +42,7 @@ module.exports = function writeTextToConnections (req, res) {
     var gif = new GifPerformance();
 
     console.log('GET-FRAME: Fetching frame data');
-    gif.getTextFrameData(query, function receiveTextFrameData (err, unparsedImageData) {
+    gif.getTextFrameData(query, function receiveTextFrameData (err, rawData) {
       console.log('GET-FRAME: Frame data fetched');
 
       if (err) {
@@ -81,16 +81,16 @@ module.exports = function writeTextToConnections (req, res) {
       // TODO: Relocate this
       var width = 600;
       var height = 380;
-      var pixels = new Uint8Array(w * h * 3);
+      var pixels = new Uint8Array(width * height * 3);
 
       var count = 0;
 
-      for (var i = 0; i < h; i++) {
-        for (var j = 0; j < w; j++) {
-          var b = (i * w * 4) + j * 4;
-          pixels[count++] = data[b];
-          pixels[count++] = data[b+1];
-          pixels[count++] = data[b+2];
+      for (var i = 0; i < height; i++) {
+        for (var j = 0; j < width; j++) {
+          var b = (i * width * 4) + j * 4;
+          pixels[count++] = rawData.charCodeAt(b);
+          pixels[count++] = rawData.charCodeAt(b+1);
+          pixels[count++] = rawData.charCodeAt(b+2);
         }
       }
       gif.setImagePixels(pixels);
