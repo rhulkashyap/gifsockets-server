@@ -28,7 +28,8 @@
   "scripts": {
     "start": "node bin/gifsockets-server",
     "start-phantomjs": "phantomjs lib/image-info-server/phantomjs/compose.js",
-    "postinstall": "which phantomjs 2>&1 > /dev/null || npm install phantomjs"
+    "postinstall": "which phantomjs 2>&1 > /dev/null || npm install phantomjs",
+    "test": "mocha"
   },
   "engines": {
     "node": "0.10.x"
@@ -51,6 +52,8 @@
     "grunt-zip": "~0.10.0",
     "grunt-contrib-jshint": "~0.7.1",
     "grunt-curl": "~1.2.1",
-    "grunt-contrib-copy": "~0.4.1"
+    "grunt-contrib-copy": "~0.4.1",
+    "mocha": "~1.14.0",
+    "phantomjs-pixel-server": "~0.1.0"
   }
 }

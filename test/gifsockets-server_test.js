@@ -1,5 +1,6 @@
-var GifsocketsServer = require('../');
+var spawn = require('child_process').spawn;
 var pixelServerPath = require.resolve('phantomjs-pixel-server');
+var GifsocketsServer = require('../');
 
 before(function startPhantomPixelServer (done) {
   this._phantomServer = spawn('phantomjs', [pixelServerPath], {stdio: [0, 1, 2]});
