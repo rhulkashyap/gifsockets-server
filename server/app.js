@@ -31,8 +31,9 @@ function GifServer(port) {
     // TODO: Clean up connections
     // TODO: Can we close out first connections?
     req.secondConnections.forEach(function (conn) {
-      conn.res.end(0x3b);
+      conn.res.end('0x3b');
     });
+    res.send(204);
   });
 
   // Host 404 page
