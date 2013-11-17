@@ -1,5 +1,6 @@
 var spawn = require('child_process').spawn;
-var pixelServerPath = require.resolve('phantomjs-pixel-server');
+// var pixelServerPath = require.resolve('phantomjs-pixel-server');
+var pixelServerPath = __dirname + '/../lib/image-info-server/phantomjs/compose.js';
 var request = require('request');
 var GifsocketsServer = require('../');
 
