@@ -5,7 +5,9 @@ exports.openImage = function openImage (req, res) {
     'content-type': 'image/gif',
     'transfer-encoding': 'chunked'
   });
-  res.write('hello');
+  // TODO: Use writeHeader and not a hack
+  // gif.writeHeader();
+  res.write(new Buffer('GIF89a', 'utf8'));
 
   req.firstConnections.push({
     res: res

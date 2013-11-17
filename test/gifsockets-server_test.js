@@ -31,6 +31,7 @@ describe('A request to a gifsockets-server', function () {
   // TODO: We need to build a way to close open connections (e.g. POST endpoint)
   before(function (done) {
     var that = this;
+    this.gifData = '';
     var req = request({
       url: 'http://localhost:7050/image.gif'
     });
@@ -39,6 +40,9 @@ describe('A request to a gifsockets-server', function () {
     });
     req.on('response', function (res) {
       console.log('responded');
+      res.on('data', function (buff) {
+        that.gifData += buff;
+      });
       that.gifRes = res;
       done();
     });
@@ -46,13 +50,10 @@ describe('A request to a gifsockets-server', function () {
 
   describe('writing a text frame', function () {
     before(function saveGifData () {
-      var that = this;
-      this.gifData = '';
-      this.gifRes.on('data', function (buff) {
-        that.gifData += buff;
-      });
+      this._beforeFrameData = this.gifData;
     });
     before(function writeNewFrame (done) {
+      // TODO: Compare _beforeFrameData to gifData
       this.timeout(5000);
       request({
         url: 'http://localhost:7050/image/text',
@@ -72,6 +73,8 @@ describe('A request to a gifsockets-server', function () {
     it('receives a new frame', function () {
       console.log(this.gifData);
     });
+
+    // TODO: Close connection (writes footer), [debug] write GIF to file, compare to expected GIF from disk
   });
 
   describe('writing a raw frame', function () {
