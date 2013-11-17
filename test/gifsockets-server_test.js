@@ -1,3 +1,4 @@
+var assert = require('assert');
 var fs = require('fs');
 var spawn = require('child_process').spawn;
 // var pixelServerPath = require.resolve('phantomjs-pixel-server');
@@ -34,7 +35,8 @@ describe('A request to a gifsockets-server', function () {
     var that = this;
     this.gifData = '';
     var req = request({
-      url: 'http://localhost:7050/image.gif'
+      url: 'http://localhost:7050/image.gif',
+      encoding: 'binary'
     });
     req.on('error', function (err) {
       done(err);
