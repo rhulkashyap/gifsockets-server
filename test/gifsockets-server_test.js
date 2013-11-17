@@ -71,7 +71,7 @@ describe('A request to a gifsockets-server', function () {
     });
 
     it('receives a new frame', function () {
-      console.log(this.gifData);
+      console.log(this.gifData.length);
     });
 
     // TODO: Close connection (writes footer), [debug] write GIF to file, compare to expected GIF from disk
