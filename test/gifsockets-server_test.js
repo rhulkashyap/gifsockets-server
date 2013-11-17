@@ -86,7 +86,6 @@ describe('A request to a gifsockets-server', function () {
         });
       });
 
-      // [debug] write GIF to file
       if (process.env.DEBUG_TEST) {
         before(function saveDebugImage () {
           try { fs.mkdirSync(__dirname + '/actual-files/'); } catch (e) {}
@@ -94,9 +93,9 @@ describe('A request to a gifsockets-server', function () {
         });
       }
 
-      // TODO: Compare to expected GIF from disk
       it('creates a GIF image', function () {
-
+        var expectedImage = fs.readFileSync(__dirname + '/expected-files/text.gif', 'binary');
+        assert.strictEqual(this.gifData, expectedImage);
       });
     });
   });
