@@ -61,7 +61,8 @@ describe('A request to a gifsockets-server', function () {
         url: 'http://localhost:7050/image/text',
         method: 'POST',
         form: {
-          text: 'Hello'
+          text: 'Hello',
+          'font-family': 'Arial'
         }
       }, function (err, res, body) {
         if (err) {
