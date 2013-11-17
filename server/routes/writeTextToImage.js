@@ -77,8 +77,23 @@ module.exports = function writeTextToConnections (req, res) {
 
       // Process the image (addFrame#1)
       console.log('ANALYZE: Analyzing image');
-      // TODO: It is no longer _pixelHack
-      gif._pixelHack(unparsedImageData);
+      // #GIFSOCKET-DIMENSIONS
+      // TODO: Relocate this
+      var width = 600;
+      var height = 380;
+      var pixels = new Uint8Array(w * h * 3);
+
+      var count = 0;
+
+      for (var i = 0; i < h; i++) {
+        for (var j = 0; j < w; j++) {
+          var b = (i * w * 4) + j * 4;
+          pixels[count++] = data[b];
+          pixels[count++] = data[b+1];
+          pixels[count++] = data[b+2];
+        }
+      }
+      gif.setImagePixels(pixels);
       gif.analyzePixels();
       console.log('ANALYZE: Image analyzed');
 
