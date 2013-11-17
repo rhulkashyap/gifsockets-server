@@ -68,13 +68,6 @@ module.exports = function writeTextToConnections (req, res) {
         });
       }
 
-      // If we have firstConnections, write a header for them
-      if (firstConnections.length) {
-        gif.on('data', writeToFirstConnections);
-        gif.writeHeader();
-        gif.flushData();
-      }
-
       // Process the image (addFrame#1)
       console.log('ANALYZE: Analyzing image');
       gif._pixelHack(unparsedImageData);
