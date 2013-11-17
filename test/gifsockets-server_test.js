@@ -1,35 +1,12 @@
 var assert = require('assert');
 var fs = require('fs');
-var spawn = require('child_process').spawn;
-// var pixelServerPath = require.resolve('phantomjs-pixel-server');
-var pixelServerPath = __dirname + '/../lib/image-info-server/phantomjs/compose.js';
 var request = require('request');
-var GifsocketsServer = require('../');
+var serverUtils = require('./utils/server');
 
-before(function startPhantomPixelServer (done) {
-  this._phantomServer = spawn('phantomjs', [pixelServerPath], {stdio: [0, 1, 2]});
-  setTimeout(done, 1000);
-});
-before(function (done) {
-  this.server = new GifsocketsServer();
-  this.server.listen(7050);
-  setTimeout(function () {
-    done();
-  }, 100);
-});
-after(function (done) {
-  this.server.destroy(function (err) {
-    done();
-  });
-});
-after(function (done) {
-  this._phantomServer.kill();
-  this._phantomServer.on('exit', function (code, signal) {
-    done();
-  });
-});
+serverUtils.runPixelServer();
+serverUtils.runGifsocketsServer();
 
-describe('A request to a gifsockets-server', function () {
+function openImage() {
   before(function (done) {
     var that = this;
     this.gifData = '';
@@ -48,6 +25,20 @@ describe('A request to a gifsockets-server', function () {
       done();
     });
   });
+}
+
+function closeImage() {
+  before(function (done) {
+    this.gifRes.on('end', done);
+    request({
+      url: 'http://localhost:7050/image/close',
+      method: 'POST'
+    });
+  });
+}
+
+describe('A request to a gifsockets-server', function () {
+  openImage();
 
   describe('writing a text frame', function () {
     before(function saveGifData () {
@@ -76,13 +67,7 @@ describe('A request to a gifsockets-server', function () {
     });
 
     describe('and closing the image', function () {
-      before(function closeImage (done) {
-        this.gifRes.on('end', done);
-        request({
-          url: 'http://localhost:7050/image/close',
-          method: 'POST'
-        });
-      });
+      closeImage();
 
       if (process.env.DEBUG_TEST) {
         before(function saveDebugImage () {
