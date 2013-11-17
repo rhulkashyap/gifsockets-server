@@ -7,6 +7,7 @@ exports.openImage = function openImage (req, res) {
   });
   // TODO: Use writeHeader and not a hack
   // gif.writeHeader();
+  // DEV: It would be nice to write out image info here too (e.g. width x height)
   res.write(new Buffer('GIF89a', 'utf8'));
 
   req.firstConnections.push({
