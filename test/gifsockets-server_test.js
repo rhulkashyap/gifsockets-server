@@ -42,7 +42,6 @@ describe('A request to a gifsockets-server', function () {
       done(err);
     });
     req.on('response', function (res) {
-      console.log('responded');
       res.on('data', function (buff) {
         that.gifData += buff;
       });
@@ -95,6 +94,7 @@ describe('A request to a gifsockets-server', function () {
 
       it('creates a GIF image', function () {
         var expectedImage = fs.readFileSync(__dirname + '/expected-files/text.gif', 'binary');
+        console.log(encodeURIComponent(this.gifData));
         assert.strictEqual(this.gifData, expectedImage);
       });
     });
