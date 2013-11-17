@@ -1,8 +1,7 @@
 var qs = require('querystring');
 
 var getRawBody = require('raw-body');
-
-var GifPerformance = require('../../lib/gif-performance');
+var GifEncoder = require('gif-encoder');
 
 module.exports = function writeTextToConnections (req, res) {
   var firstConnections = req.firstConnections;
@@ -31,7 +30,7 @@ module.exports = function writeTextToConnections (req, res) {
     console.log('RAW-Outputting: ');
 
     // Generate a new GIF to encode
-    var gif = new GifPerformance();
+    var gif = new GifEncoder();
 
       function writeToFirstConnections(buff) {
         firstConnections.forEach(function writeToFirstConnection (conn) {

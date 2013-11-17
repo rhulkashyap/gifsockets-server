@@ -2,7 +2,7 @@ var qs = require('querystring');
 
 var getRawBody = require('raw-body');
 
-var GifPerformance = require('../../lib/gif-performance');
+var GifCanvas = require('../../lib/gif-canvas');
 
 module.exports = function writeTextToConnections (req, res) {
   var firstConnections = req.firstConnections;
@@ -39,7 +39,7 @@ module.exports = function writeTextToConnections (req, res) {
     console.log('Outputting: ' + text);
 
     // Generate a new GIF to encode
-    var gif = new GifPerformance();
+    var gif = new GifCanvas();
 
     console.log('GET-FRAME: Fetching frame data');
     gif.getTextFrameData(query, function receiveTextFrameData (err, rawData) {
