@@ -1,3 +1,4 @@
+var fs = require('fs');
 var spawn = require('child_process').spawn;
 // var pixelServerPath = require.resolve('phantomjs-pixel-server');
 var pixelServerPath = __dirname + '/../lib/image-info-server/phantomjs/compose.js';
@@ -75,9 +76,23 @@ describe('A request to a gifsockets-server', function () {
     });
 
     describe('and closing the image', function () {
-      // TODO: Close connection (writes footer),
+      before(function closeImage (done) {
+        this.gifRes.on('end', done);
+        request({
+          url: 'http://localhost:7050/close',
+          method: 'POST'
+        });
+      });
+
       // [debug] write GIF to file
-      // compare to expected GIF from disk
+      if (process.env.DEBUG_TEST) {
+        before(function saveDebugImage () {
+          try { fs.mkdirSync(__dirname + '/actual-files/'); } catch (e) {}
+          fs.writeFileSync(__dirname + '/actual-files/text.gif', this.gifData, 'binary');
+        });
+      }
+
+      // TODO: Compare to expected GIF from disk
       it('creates a GIF image', function () {
 
       });
