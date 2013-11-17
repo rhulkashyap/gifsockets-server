@@ -94,6 +94,7 @@ describe('A request to a gifsockets-server', function () {
       }
 
       it('creates a GIF image', function () {
+        // TODO: We might be able to use image magick for a fuzzy match
         var expectedImages = ['text.gif', 'text2.gif'];
         var matchedAnImage = false;
         var i = expectedImages.length;
