@@ -71,10 +71,17 @@ describe('A request to a gifsockets-server', function () {
     });
 
     it('receives a new frame', function () {
-      console.log(this.gifData.length);
+      assert.notEqual(this._beforeFrameData, this.gifData);
     });
 
-    // TODO: Close connection (writes footer), [debug] write GIF to file, compare to expected GIF from disk
+    describe('and closing the image', function () {
+      // TODO: Close connection (writes footer),
+      // [debug] write GIF to file
+      // compare to expected GIF from disk
+      it('creates a GIF image', function () {
+
+      });
+    });
   });
 
   describe('writing a raw frame', function () {

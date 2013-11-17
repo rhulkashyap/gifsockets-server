@@ -27,6 +27,13 @@ function GifServer(port) {
   app.get('/image.gif', routes.openImage);
   app.post('/image/text', routes.writeTextToImage);
   app.post('/image/raw', routes.writeRawToImage);
+  app.post('/close', function (req, res) {
+    // TODO: Clean up connections
+    // TODO: Can we close out first connections?
+    req.secondConnections.forEach(function (conn) {
+      conn.res.end(0x3b);
+    });
+  });
 
   // Host 404 page
   app.all('*', routes[404]);
