@@ -31,12 +31,7 @@
     "node": "0.10.x"
   },
   "dependencies": {
-    "nko": "*",
     "obj-extend": "~0.1.0",
-    "temporary": "0.0.5",
-    "async": "~0.2.7",
-    "which": "~1.0.5",
-    "shell-quote": "~1.4.0",
     "raw-body": "0.0.3",
     "express": "~3.4.4",
     "jade": "~0.35.0",

@@ -77,6 +77,7 @@ module.exports = function writeTextToConnections (req, res) {
 
       // Process the image (addFrame#1)
       console.log('ANALYZE: Analyzing image');
+      // TODO: It is no longer _pixelHack
       gif._pixelHack(unparsedImageData);
       gif.analyzePixels();
       console.log('ANALYZE: Image analyzed');
