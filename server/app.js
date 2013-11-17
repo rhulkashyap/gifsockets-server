@@ -27,18 +27,16 @@ function GifServer(port) {
   app.get('/image.gif', routes.openImage);
   app.post('/image/text', routes.writeTextToImage);
   app.post('/image/raw', routes.writeRawToImage);
-  // TODO: Rename to image/close (maybe DELETE image.gif? Nah, not cross-browser.
-  app.post('/close', function (req, res) {
-    // TODO: Can we close out first connections?
+  app.post('/image/close', function (req, res) {
     // Write footer
+    // TODO: Can we close out first connections?
     // TODO: We should be using GifEncoder.finish
     req.secondConnections.forEach(function (conn) {
       conn.res.end('0x3b');
     });
 
-    // TODO: Re-enable after done testing
-    // // Clean up connections
-    // req.secondConnections.splice(0, req.secondConnections.length);
+    // Clean up connections
+    req.secondConnections.splice(0, req.secondConnections.length);
 
     // Close the request
     res.send(204);
