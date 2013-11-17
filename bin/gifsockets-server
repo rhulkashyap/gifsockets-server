@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+
+var GifSocketsServer = require('../');
+
+// Create a server and start listening
+var app = new GifSocketsServer();
+app.listen(8000);
