@@ -1,8 +1,8 @@
 var assert = require('assert');
 var fs = require('fs');
 var request = require('request');
-var getPixels = require('get-pixels');
 var serverUtils = require('./utils/server');
+var imageUtils = require('./utils/image');
 
 serverUtils.runPixelServer();
 serverUtils.runGifsocketsServer();
@@ -24,6 +24,23 @@ function openImage() {
       });
       that.gifRes = res;
       done();
+    });
+  });
+}
+
+function drawJsonFrame() {
+  before(function writeNewFrame (done) {
+    this.timeout(5000);
+    request({
+      url: 'http://localhost:7050/image/json',
+      method: 'POST',
+      body: JSON.stringify([].slice.call(this.pixels.data))
+    }, function (err, res, body) {
+      if (err) {
+        return done(err);
+      }
+      // TODO: We should callback when we have written out the frame
+      setTimeout(done, 1000);
     });
   });
 }
@@ -95,30 +112,8 @@ describe('A request to a gifsockets-server', function () {
 
   describe('writing a JSON pixel frame', function () {
     openImage();
-    before(function loadCheckerboard (done) {
-      var that = this;
-      getPixels(__dirname + '/test-files/checkerboard.png', function (err, pixels) {
-        if (err) {
-          return done(err);
-        }
-        that.checkerboard = pixels;
-        done();
-      });
-    });
-    before(function writeNewFrame (done) {
-      this.timeout(5000);
-      request({
-        url: 'http://localhost:7050/image/json',
-        method: 'POST',
-        body: JSON.stringify([].slice.call(this.checkerboard.data))
-      }, function (err, res, body) {
-        if (err) {
-          return done(err);
-        }
-        // TODO: We should callback when we have written out the frame
-        setTimeout(done, 1000);
-      });
-    });
+    imageUtils.load(__dirname + '/test-files/checkerboard.png');
+    drawJsonFrame();
     closeImage();
 
     if (process.env.DEBUG_TEST) {
@@ -136,10 +131,26 @@ describe('A request to a gifsockets-server', function () {
 });
 
 describe('A request to a gifsockets-server', function () {
-  describe('writing a first frame', function () {
-    describe('and a second frame', function () {
-      it('receives both frames', function () {
+  openImage();
+  describe.only('writing a first frame', function () {
+    imageUtils.load(__dirname + '/test-files/checkerboard.png');
+    drawJsonFrame();
 
+    describe('and a second frame', function () {
+      imageUtils.load(__dirname + '/test-files/checkerboard-inverse.png');
+      drawJsonFrame();
+      closeImage();
+
+      if (process.env.DEBUG_TEST) {
+        before(function saveDebugImage () {
+          try { fs.mkdirSync(__dirname + '/actual-files/'); } catch (e) {}
+          fs.writeFileSync(__dirname + '/actual-files/multiple.gif', this.gifData, 'binary');
+        });
+      }
+
+      it('receives both frames', function () {
+        var expectedImg = fs.readFileSync(__dirname + '/expected-files/multiple.gif', 'binary');
+        assert.strictEqual(this.gifData, expectedImg);
       });
     });
   });
