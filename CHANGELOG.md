@@ -1,4 +1,6 @@
 # gifsockets-server changelog
+0.30.0 - Moved to `phantomjs-pixel-server` and `gif-encoder` node modules
+
 0.29.0 - Added tests, close route, and updated /image/raw to /image/json
 
 0.28.0 - Added background image prompt
