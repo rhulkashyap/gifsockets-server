@@ -70,24 +70,7 @@ module.exports = function writeTextToConnections (req, res) {
 
       // Process the image (addFrame#1)
       console.log('ANALYZE: Analyzing image');
-      // #GIFSOCKET-DIMENSIONS
-      // TODO: Relocate this
-      var width = 600;
-      var height = 380;
-      var pixels = new Uint8Array(width * height * 3);
-
-      var count = 0;
-
-      for (var i = 0; i < height; i++) {
-        for (var j = 0; j < width; j++) {
-          var b = (i * width * 4) + j * 4;
-          pixels[count++] = rawData.charCodeAt(b);
-          pixels[count++] = rawData.charCodeAt(b+1);
-          pixels[count++] = rawData.charCodeAt(b+2);
-        }
-      }
-      gif.setImagePixels(pixels);
-      gif.analyzePixels();
+      gif.analyzeStringImage(rawData);
       console.log('ANALYZE: Image analyzed');
 
       // Write out the image info for the first connections (addFrame#2)
