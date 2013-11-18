@@ -125,7 +125,6 @@ html
                allowtransparency=true, width=115, height=25)
       .row.text-center
         p.span12.text-center
-          //- TODO: Put up some <canvas> based placeholder text until first submit
           img.gifsocket(src="/image.gif")
       div
         iframe.hidden(name="request-frame", width=0, height=0)
@@ -190,7 +189,6 @@ html
               ```
 
     script.
-      //- TODO: Drag and drop bindings
       var _gaq = _gaq || [];
       _gaq.push([
         '_setAccount',
@@ -239,7 +237,6 @@ html
         }
 
         if ($gifsocket && $canvas.getContext) {
-          // TODO: Write out to the style -> background url
           var context = $canvas.getContext('2d');
           context.font = '30px Impact';
           context.fillStyle = '#000000';
