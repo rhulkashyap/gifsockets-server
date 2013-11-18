@@ -93,7 +93,7 @@ describe('A request to a gifsockets-server', function () {
     });
   });
 
-  describe('writing a raw frame', function () {
+  describe('writing a JSON pixel frame', function () {
     openImage();
     before(function loadCheckerboard (done) {
       var that = this;
@@ -108,8 +108,7 @@ describe('A request to a gifsockets-server', function () {
     before(function writeNewFrame (done) {
       this.timeout(5000);
       request({
-        // TODO: Rename this to JSON
-        url: 'http://localhost:7050/image/raw',
+        url: 'http://localhost:7050/image/json',
         method: 'POST',
         body: JSON.stringify([].slice.call(this.checkerboard.data))
       }, function (err, res, body) {

@@ -26,7 +26,7 @@ function GifServer(port) {
   // Server logic
   app.get('/image.gif', routes.openImage);
   app.post('/image/text', routes.writeTextToImage);
-  app.post('/image/raw', routes.writeRawToImage);
+  app.post('/image/json', routes.writeJsonToImage);
   app.post('/image/close', function (req, res) {
     // Write footer
     // TODO: Can we close out first connections?
