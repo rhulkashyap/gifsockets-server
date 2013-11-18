@@ -22,7 +22,6 @@ exports.openImage = function openImage (req, res) {
     });
   });
   gif.writeHeader();
-  gif.flushData();
 };
 
 exports.closeImages = function (req, res) {
