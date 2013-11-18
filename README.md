@@ -32,6 +32,14 @@ This code was written during [Node Knockout 2013][], a 48 hour hackathon, but it
 
 The server you are running is at `server/app.js` and the `gif` logic is inside of `lib`.
 
+Modules which are part of this project include:
+
+- `phantomjs-pixel-server` A [PhantomJS][] server which takes text and converts it to an `rgba` array of pixels
+- `gif-encoder` A fork of [gif.js][] with stream support and is optimized for [node.js][] performance
+
+[node.js]: http://nodejs.org/
+
+## Development
 ### Dependencies
 Server-side dependencies are managed with [npm][] and client-side dependencies are managed with [grunt][]. To install the latest dependencies
 
