@@ -68,13 +68,6 @@ module.exports = function writeTextToConnections (req, res) {
         });
       }
 
-      // If we have firstConnections, write a header for them
-      if (firstConnections.length) {
-        gif.on('data', writeToFirstConnections);
-        gif.writeHeader();
-        gif.flushData();
-      }
-
       // Process the image (addFrame#1)
       console.log('ANALYZE: Analyzing image');
       // #GIFSOCKET-DIMENSIONS
@@ -99,6 +92,7 @@ module.exports = function writeTextToConnections (req, res) {
 
       // Write out the image info for the first connections (addFrame#2)
       console.log('FIRST-INFO: Writing image info to first connections');
+      gif.on('data', writeToFirstConnections);
       gif.writeImageInfo();
       gif.flushData();
       console.log('FIRST-INFO: First conections completed');

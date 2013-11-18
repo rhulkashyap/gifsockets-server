@@ -5,6 +5,10 @@ exports.openImage = function openImage (req, res) {
     'content-type': 'image/gif',
     'transfer-encoding': 'chunked'
   });
+  // TODO: Use writeHeader and not a hack
+  // gif.writeHeader();
+  // DEV: It would be nice to write out image info here too (e.g. width x height)
+  res.write(new Buffer('GIF89a', 'utf8'));
 
   req.firstConnections.push({
     res: res
@@ -12,7 +16,7 @@ exports.openImage = function openImage (req, res) {
 };
 
 exports.writeTextToImage = require('./writeTextToImage');
-exports.writeRawToImage = require('./writeRawToImage');
+exports.writeJsonToImage = require('./writeJsonToImage');
 
 // Render some jade into memory
 var fs = require('fs');

@@ -1,4 +1,6 @@
-# console-log changelog
+# gifsockets-server changelog
+0.29.0 - Added tests, close route, and updated /image/raw to /image/json
+
 0.28.0 - Added background image prompt
 
 0.27.0 - Updated input sizing at lower widths

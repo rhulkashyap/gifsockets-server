@@ -2,10 +2,7 @@ var express = require('express');
 
 var routes = require('./routes');
 
-// TODO: Debug single quotes in URLs
-
-module.exports = function gifServer (port) {
-
+function GifServer(port) {
   // Keep track of array of connections
   var firstConnections = [];
   var secondConnections = [];
@@ -29,16 +26,37 @@ module.exports = function gifServer (port) {
   // Server logic
   app.get('/image.gif', routes.openImage);
   app.post('/image/text', routes.writeTextToImage);
-  app.post('/image/raw', routes.writeRawToImage);
+  app.post('/image/json', routes.writeJsonToImage);
+  app.post('/image/close', function (req, res) {
+    // Write footer
+    // TODO: Can we close out first connections?
+    // TODO: We should be using GifEncoder.finish
+    req.secondConnections.forEach(function (conn) {
+      conn.res.end('0x3b');
+    });
+
+    // Clean up connections
+    req.secondConnections.splice(0, req.secondConnections.length);
+
+    // Close the request
+    res.send(204);
+  });
 
   // Host 404 page
   app.all('*', routes[404]);
 
-  // Listen and notify the outside world
-  app.listen(port);
-  console.log('gifsockets server is listening at http://127.0.0.1:' + port + '/');
+  // Save app for later
+  this.app = app;
+}
+GifServer.prototype = {
+  listen: function (port) {
+    // Listen and notify the outside world
+    this._app = this.app.listen(port);
+    console.log('gifsockets server is listening at http://127.0.0.1:' + port + '/');
+  },
+  destroy: function (cb) {
+    this._app.close(cb || function () {});
+  }
 };
 
-if (module.parent === null) {
-  module.exports(7000);
-}
+module.exports = GifServer;
