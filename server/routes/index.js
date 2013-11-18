@@ -15,6 +15,20 @@ exports.openImage = function openImage (req, res) {
   });
 };
 
+exports.closeImages = function (req, res) {
+  // Write footer
+  // TODO: We should be using GifEncoder.finish
+  req.firstConnections.forEach(function (conn) {
+    conn.res.end('0x3b');
+  });
+
+  // Clean up connections
+  req.secondConnections.splice(0, req.secondConnections.length);
+
+  // Close the request
+  res.send(204);
+};
+
 exports.writeTextToImage = require('./writeTextToImage');
 exports.writeJsonToImage = require('./writeJsonToImage');
 

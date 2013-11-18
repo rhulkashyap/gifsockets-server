@@ -27,20 +27,8 @@ function GifServer(port) {
   app.get('/image.gif', routes.openImage);
   app.post('/image/text', routes.writeTextToImage);
   app.post('/image/json', routes.writeJsonToImage);
-  app.post('/image/close', function (req, res) {
-    // Write footer
-    // TODO: Can we close out first connections?
-    // TODO: We should be using GifEncoder.finish
-    req.secondConnections.forEach(function (conn) {
-      conn.res.end('0x3b');
-    });
-
-    // Clean up connections
-    req.secondConnections.splice(0, req.secondConnections.length);
-
-    // Close the request
-    res.send(204);
-  });
+  // TODO: Somehow assign each page an id and allow for closing via /close:id. See #5 comments
+  app.post('/image/close', routes.closeImages);
 
   // Host 404 page
   app.all('*', routes[404]);
