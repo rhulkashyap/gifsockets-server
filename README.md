@@ -24,11 +24,9 @@ using a fork of [gif.js][] for encoding and
 To run this website locally:
 
 ```bash
-git clone https://github.com/nko4/console-log
-cd console-log
-npm install
-npm run start-phantomjs &
-npm start
+npm install -g gifsockets-server phantomjs-pixel-server
+phantomjs-pixel-server &
+gifsocket-server
 # Website will be available at http://localhost:8000/
 ```
 

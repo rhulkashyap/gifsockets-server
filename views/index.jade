@@ -183,11 +183,9 @@ html
               To run this website locally:
 
               ```bash
-              git clone https://github.com/nko4/console-log
-              cd console-log
-              npm install
-              npm run start-phantomjs &
-              npm start
+              npm install -g gifsockets-server phantomjs-pixel-server
+              phantomjs-pixel-server &
+              gifsocket-server
               # Website will be available at http://localhost:8000/
               ```
 
@@ -284,9 +282,9 @@ html
           //- TODO: Continue with setup of this
           //- FileReaderJS.setupClipboard(document.body, opts);
 
-          if (window.location.href.indexOf('localhost') !== -1) {
-            $.post('/image/text', 'text=hello\nworld&foreground=' + encodeURIComponent('#BADA55'));
-          }
+          //- if (window.location.href.indexOf('localhost') !== -1) {
+          //-   $.post('/image/text', 'text=hello\nworld&foreground=' + encodeURIComponent('#BADA55'));
+          //- }
         }
 
         //- TODO: We can notify user to reload page on timeout
