@@ -32,6 +32,32 @@ This code was written during [Node Knockout 2013][], a 48 hour hackathon, but it
 
 The server you are running is at `server/app.js` and the `gif` logic is inside of `lib`.
 
+### Dependencies
+Server-side dependencies are managed with [npm][] and client-side dependencies are managed with [grunt][]. To install the latest dependencies
+
+```bash
+npm install
+# npm http GET https://registry.npmjs.org/marked
+# npm http GET https://registry.npmjs.org/express
+# ...
+
+grunt install
+# Running "curl-dir:public/js/" (curl-dir) task
+# Files "public/js/filereader.js", "public/js/filereader.min.js", "public/js/jquery.js" created.
+# ...
+# Done, without errors.
+```
+
+If you never used [grunt][] before, install the [CLI tool][grunt-cli] via
+
+```bash
+npm install -g grunt-cli
+```
+
+[npm]: https://npmjs.org/
+[grunt]: http://gruntjs.com/
+[grunt-cli]: https://github.com/gruntjs/grunt-cli
+
 ## Donating
 Support this project and [others by twolfson][gittip] via [gittip][].
 

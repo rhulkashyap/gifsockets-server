@@ -27,7 +27,7 @@
   "main": "server/app.js",
   "scripts": {
     "start": "node bin/gifsockets-server",
-    "start-phantomjs": "phantomjs lib/image-info-server/phantomjs/compose.js",
+    "start-phantomjs": "phantomjs-pixel-server",
     "postinstall": "which phantomjs 2>&1 > /dev/null || npm install phantomjs",
     "test": "mocha"
   },
