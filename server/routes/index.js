@@ -1,3 +1,5 @@
+var GifCanvas = require('../../lib/gif-canvas');
+
 exports.openImage = function openImage (req, res) {
   console.log('CONNECTION-ADDED');
   res.writeHead(200, {
@@ -5,20 +7,28 @@ exports.openImage = function openImage (req, res) {
     'content-type': 'image/gif',
     'transfer-encoding': 'chunked'
   });
-  // TODO: Use writeHeader and not a hack
-  // gif.writeHeader();
-  // DEV: It would be nice to write out image info here too (e.g. width x height)
-  res.write(new Buffer('GIF89a', 'utf8'));
 
-  req.firstConnections.push({
-    res: res
+  // Write out the header info
+  // DEV: It would be nice to write out image info here too (e.g. width x height)
+  var gif = new GifCanvas();
+  gif.on('data', function (buff) {
+    // Clean up our GIF and write out the info
+    gif.removeAllListeners();
+    res.write(buff);
+
+    // Add the response to our list of open connections
+    req.firstConnections.push({
+      res: res
+    });
   });
+  gif.writeHeader();
+  gif.flushData();
 };
 
 exports.closeImages = function (req, res) {
   // Write footer
   // TODO: We should be using GifEncoder.finish
-  req.firstConnections.forEach(function (conn) {
+  req.secondConnections.forEach(function (conn) {
     conn.res.end('0x3b');
   });
 
