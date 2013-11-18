@@ -1,4 +1,6 @@
 # gifsockets-server changelog
+0.33.0 - Moved to commander for CLI
+
 0.32.0 - Moved to proper open/close via gif-canvas for connections
 
 0.31.0 - Cleaned up TODOs and relocated string decoding into gif-canvas
