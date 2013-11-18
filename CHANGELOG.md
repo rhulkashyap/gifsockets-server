@@ -1,4 +1,6 @@
 # gifsockets-server changelog
+0.34.1 - Updated package.json description
+
 0.34.0 - Updated README with module information and more documentation
 
 0.33.0 - Moved to commander for CLI
