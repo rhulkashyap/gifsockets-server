@@ -110,7 +110,7 @@ describe('A request to a gifsockets-server', function () {
     });
   });
 
-  describe.only('writing a JSON pixel frame', function () {
+  describe('writing a JSON pixel frame', function () {
     openImage();
     imageUtils.load(__dirname + '/test-files/checkerboard.png');
     drawJsonFrame();
