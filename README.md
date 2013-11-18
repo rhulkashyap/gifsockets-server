@@ -1,21 +1,16 @@
-# Mothereffing GIFSockets!!!
+# gifsockets-server
 
-[GIFSockets][] were originally written in [Clojure][],
-using [Java][] libraries for [GIF][] encoding.
+GIFSockets are never-ending animated [GIFs][GIF] for sending text and images between people.
 
-[GIFSockets]: https://github.com/videlalvaro/gifsockets
+Demo: http://console-log.2013.nodeknockout.com/
+
+`gifsockets-server` is a reimplementation of [videlalvaro/gifsockets][]. It was written in [Clojure][] and not trivial to set up, especially without any [Clojure][] experience.
+
+This projet is written in [JavaScript][] and use [gif-encoder][] for encoding and [PhantomJS][] for [canvas][] preparation.
+
+[videlalvaro/gifsockets]: https://github.com/videlalvaro/gifsockets
 [Clojure]: http://en.wikipedia.org/wiki/Clojure
-[Java]: http://en.wikipedia.org/wiki/Java_%28programming_language%29
 [GIF]: http://en.wikipedia.org/wiki/Graphics_Interchange_Format
-
-Unfortunately, it was not trivial to set up.
-Especially if you have not had experience with
-[Clojure][] in the past.
-
-This project is a reimplementation in [JavaScript][]
-using a fork of [gif.js][] for encoding and
-[PhantomJS][] for [canvas][] preparation.
-
 [JavaScript]: http://en.wikipedia.org/wiki/ECMAScript
 [gif.js]: http://jnordberg.github.io/gif.js/
 [PhantomJS]: http://phantomjs.org/
@@ -31,7 +26,7 @@ gifsocket-server
 ```
 
 ## Documentation
-This code was written during [Node Knockout 2013][], a 48 hour hackathon, so it is not the best organized.
+This code was written during [Node Knockout 2013][], a 48 hour hackathon, but it is slowly being organized.
 
 [Node Knockout 2013]: http://2013.nodeknockout.com/
 
