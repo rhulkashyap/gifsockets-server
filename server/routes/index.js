@@ -11,7 +11,7 @@ exports.openImage = function openImage (req, res) {
   // Write out the header info
   // DEV: It would be nice to write out image info here too (e.g. width x height)
   var gif = new GifCanvas();
-  gif.on('data', function (buff) {
+  gif.on('data', function getHeader (buff) {
     // Clean up our GIF and write out the info
     gif.removeAllListeners();
     res.write(buff);
@@ -26,17 +26,24 @@ exports.openImage = function openImage (req, res) {
 };
 
 exports.closeImages = function (req, res) {
-  // Write footer
-  // TODO: We should be using GifEncoder.finish
-  req.secondConnections.forEach(function (conn) {
-    conn.res.end('0x3b');
-  });
-
-  // Clean up connections
+  // Remove and save the open connections
+  var connections = req.firstConnections.concat(req.secondConnections);
+  req.firstConnections.splice(0, req.firstConnections.length);
   req.secondConnections.splice(0, req.secondConnections.length);
 
-  // Close the request
-  res.send(204);
+  // Write footer
+  var gif = new GifCanvas();
+  gif.on('data', function getFooter (buff) {
+    // Clean up our GIF and write out footer
+    gif.removeAllListeners();
+    connections.forEach(function writeFooter (conn) {
+      conn.res.end(buff);
+    });
+
+    // Close the request
+    res.send(204);
+  });
+  gif.finish();
 };
 
 exports.writeTextToImage = require('./writeTextToImage');
