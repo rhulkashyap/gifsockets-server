@@ -108,6 +108,7 @@ describe('A request to a gifsockets-server', function () {
     before(function writeNewFrame (done) {
       this.timeout(5000);
       request({
+        // TODO: Rename this to JSON
         url: 'http://localhost:7050/image/raw',
         method: 'POST',
         body: JSON.stringify([].slice.call(this.checkerboard.data))
