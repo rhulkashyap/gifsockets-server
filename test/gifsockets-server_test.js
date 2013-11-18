@@ -110,7 +110,7 @@ describe('A request to a gifsockets-server', function () {
       request({
         url: 'http://localhost:7050/image/raw',
         method: 'POST',
-        form: JSON.stringify(this.checkerboard)
+        body: JSON.stringify([].slice.call(this.checkerboard.data))
       }, function (err, res, body) {
         if (err) {
           return done(err);
