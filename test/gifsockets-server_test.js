@@ -130,18 +130,8 @@ describe('A request to a gifsockets-server', function () {
     }
 
     it('creates the image as a GIF', function () {
-      // // TODO: We might be able to use image magick for a fuzzy match
-      // var expectedImages = ['text.gif', 'text2.gif'];
-      // var matchedAnImage = false;
-      // var i = expectedImages.length;
-      // while (i--) {
-      //   var expectedImg = fs.readFileSync(__dirname + '/expected-files/' + expectedImages[i], 'binary');
-      //   if (expectedImg === this.gifData) {
-      //     matchedAnImage = true;
-      //     break;
-      //   }
-      // }
-      // assert(matchedAnImage);
+      var expectedImg = fs.readFileSync(__dirname + '/expected-files/json.gif', 'binary');
+      assert.strictEqual(this.gifData, expectedImg);
     });
   });
 });
