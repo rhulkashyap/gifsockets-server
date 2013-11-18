@@ -1,4 +1,6 @@
 # gifsockets-server changelog
+0.34.0 - Updated README with module information and more documentation
+
 0.33.0 - Moved to commander for CLI
 
 0.32.0 - Moved to proper open/close via gif-canvas for connections
