@@ -132,7 +132,7 @@ describe('A request to a gifsockets-server', function () {
 
 describe('A request to a gifsockets-server', function () {
   openImage();
-  describe.only('writing a first frame', function () {
+  describe('writing a first frame', function () {
     imageUtils.load(__dirname + '/test-files/checkerboard.png');
     drawJsonFrame();
 
