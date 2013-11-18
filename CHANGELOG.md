@@ -1,4 +1,6 @@
 # gifsockets-server changelog
+0.31.0 - Cleaned up TODOs and relocated string decoding into gif-canvas
+
 0.30.1 - Updated installation documentation
 
 0.30.0 - Moved to `phantomjs-pixel-server` and `gif-encoder` node modules
