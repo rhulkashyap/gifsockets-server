@@ -93,7 +93,7 @@ describe('A request to a gifsockets-server', function () {
     });
   });
 
-  describe.only('writing a raw frame', function () {
+  describe('writing a raw frame', function () {
     openImage();
     before(function loadCheckerboard (done) {
       var that = this;
