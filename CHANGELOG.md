@@ -1,4 +1,6 @@
 # gifsockets-server changelog
+0.35.1 - Updated README with `gifsockets` dependency
+
 0.35.0 - Moved to `gifsockets` node module
 
 0.34.1 - Updated package.json description
