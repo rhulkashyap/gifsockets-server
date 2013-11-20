@@ -25,7 +25,7 @@ module.exports = function writeTextToConnections (req, res) {
     // Write out our JSON to all connections
     // TODO: Move this from drawRgba frame to drawRgb with string decoding
     console.log('JSON-Outputting: ');
-    req.gifsocket.drawRgbaFrame(imageData, function drewJsonImage () {
+    req.gifsocket.writeRgbaFrame(imageData, function wroteJsonFrame () {
       // Send a no content response
       res.writeHead(204);
       res.end();

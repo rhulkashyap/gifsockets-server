@@ -51,7 +51,7 @@ module.exports = function writeTextToConnections (req, res) {
       }
 
       var rgbPixels = gif.decodeStringImage(rawData);
-      req.gifsocket.drawRgbFrame(rgbPixels, function drewJsonImage () {
+      req.gifsocket.writeRgbFrame(rgbPixels, function wroteTextFrame () {
         // Send a no content response
         res.writeHead(204);
         res.end();
