@@ -31,7 +31,8 @@ function GifServer(port) {
   app.post('/image/text', routes.writeTextToImage);
   app.post('/image/json', routes.writeJsonToImage);
   // TODO: Somehow assign each page an id and allow for closing via /close:id. See #5 comments
-  // TODO: On process close, write out finish to all connections
+  // TODO: On server close, write out finish to all connections
+  // TODO: On process close, close server
   app.post('/image/close', routes.closeImages);
 
   // Host 404 page
