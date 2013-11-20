@@ -1,11 +1,15 @@
 var express = require('express');
+var Gifsocket = require('gifsockets');
 
 var routes = require('./routes');
 
 function GifServer(port) {
-  // Keep track of array of connections
-  var firstConnections = [];
-  var secondConnections = [];
+  // Create a new gifsocket for the app
+  var gifsocket = new Gifsocket({
+    // #GIFSOCKET-DIMENSIONS
+    width: 600,
+    height: 380
+  });
 
   // Start a server that runs on jade
   var app = express();
@@ -13,10 +17,9 @@ function GifServer(port) {
   // Host static files
   app.use('/public', express['static'](__dirname + '/../public'));
 
-  // Set up connections for server logic
+  // Set up gifsocket for server logic
   app.use(function saveConnections (req, res, next) {
-    req.firstConnections = firstConnections;
-    req.secondConnections = secondConnections;
+    req.gifsocket = gifsocket;
     next();
   });
 
@@ -40,7 +43,7 @@ GifServer.prototype = {
   listen: function (port) {
     // Listen and notify the outside world
     this._app = this.app.listen(port);
-    console.log('gifsockets server is listening at http://127.0.0.1:' + port + '/');
+    console.log('gifsockets-server is listening at http://127.0.0.1:' + port + '/');
   },
   destroy: function (cb) {
     this._app.close(cb || function () {});
