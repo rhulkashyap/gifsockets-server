@@ -35,13 +35,7 @@ function drawJsonFrame() {
       url: 'http://localhost:7050/image/json',
       method: 'POST',
       body: JSON.stringify([].slice.call(this.pixels.data))
-    }, function (err, res, body) {
-      if (err) {
-        return done(err);
-      }
-      // TODO: We should callback when we have written out the frame
-      setTimeout(done, 1000);
-    });
+    }, done);
   });
 }
 
@@ -70,13 +64,7 @@ describe('A request to a gifsockets-server', function () {
           text: 'Hello',
           'font-family': 'Arial'
         }
-      }, function (err, res, body) {
-        if (err) {
-          return done(err);
-        }
-        // TODO: We should callback when we have written out the frame
-        setTimeout(done, 1000);
-      });
+      }, done);
     });
 
     it('receives a new frame', function () {

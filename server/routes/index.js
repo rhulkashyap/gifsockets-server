@@ -1,5 +1,3 @@
-var GifCanvas = require('../../lib/gif-canvas');
-
 exports.openImage = function openImage (req, res) {
   console.log('CONNECTION-ADDED');
   res.writeHead(200, {

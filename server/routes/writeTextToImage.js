@@ -2,7 +2,7 @@ var qs = require('querystring');
 
 var getRawBody = require('raw-body');
 
-var GifCanvas = require('../../lib/gif-canvas');
+var TextCanvas = require('../../lib/text-canvas');
 
 module.exports = function writeTextToConnections (req, res) {
   // Parse in the body (up to 1mb)
@@ -36,10 +36,10 @@ module.exports = function writeTextToConnections (req, res) {
     console.log('Outputting: ' + text);
 
     // Generate a new GIF to encode
-    var gif = new GifCanvas();
+    var textCanvas = new TextCanvas();
 
     console.log('GET-FRAME: Fetching frame data');
-    gif.getTextFrameData(query, function receiveTextFrameData (err, rawData) {
+    textCanvas.getTextFrameData(query, function receiveTextFrameData (err, rawData) {
       console.log('GET-FRAME: Frame data fetched');
 
       if (err) {
@@ -50,7 +50,7 @@ module.exports = function writeTextToConnections (req, res) {
         return res.end('Error generating frame');
       }
 
-      var rgbPixels = gif.decodeStringImage(rawData);
+      var rgbPixels = textCanvas.decodeStringImage(rawData);
       req.gifsocket.writeRgbFrame(rgbPixels, function wroteTextFrame () {
         // Send a no content response
         res.writeHead(204);
