@@ -5,9 +5,6 @@ var getRawBody = require('raw-body');
 var GifCanvas = require('../../lib/gif-canvas');
 
 module.exports = function writeTextToConnections (req, res) {
-  var firstConnections = req.firstConnections;
-  var secondConnections = req.secondConnections;
-
   // Parse in the body (up to 1mb)
   console.log('BODY-PARSE: Parsing body');
   getRawBody(req, {
@@ -53,56 +50,12 @@ module.exports = function writeTextToConnections (req, res) {
         return res.end('Error generating frame');
       }
 
-      // Send a no content response
-      res.writeHead(204);
-      res.end();
-
-      function writeToFirstConnections(buff) {
-        firstConnections.forEach(function writeToFirstConnection (conn) {
-          conn.res.write(buff);
-        });
-      }
-      function writeToSecondConnections(buff) {
-        secondConnections.forEach(function writeToSecondConnection (conn) {
-          conn.res.write(buff);
-        });
-      }
-
-      // Process the image (addFrame#1)
-      console.log('ANALYZE: Analyzing image');
-      gif.analyzeStringImage(rawData);
-      console.log('ANALYZE: Image analyzed');
-
-      // Write out the image info for the first connections (addFrame#2)
-      console.log('FIRST-INFO: Writing image info to first connections');
-      gif.on('data', writeToFirstConnections);
-      gif.writeImageInfo();
-      gif.flushData();
-      console.log('FIRST-INFO: First conections completed');
-
-      // Write out the image info for the second connections (addFrame#2)
-      console.log('SECOND-INFO: Writing image info to second connections');
-      gif.removeListener('data', writeToFirstConnections);
-      gif.on('data', writeToSecondConnections);
-      gif.writeImageInfo();
-      gif.flushData();
-      console.log('SECOND-INFO: Second conections completed');
-
-      // Write out the image itself for all connections (addFrame#3)
-      console.log('IMAGE-ALL: Writing image to all connections');
-      gif.on('data', writeToFirstConnections);
-      gif.outputImage();
-      gif.flushData();
-      console.log('IMAGE-ALL: All connections completed');
-
-      // Clean up event listeners
-      gif.removeAllListeners();
-
-      // TODO: On process close, write out finish to all connections
-
-      // Move all firstConnections to secondConnections
-      secondConnections.push.apply(secondConnections, firstConnections);
-      firstConnections.splice(0, firstConnections.length);
+      var rgbPixels = gif.decodeStringImage(rawData);
+      req.gifsocket.drawRgbFrame(rgbPixels, function drewJsonImage () {
+        // Send a no content response
+        res.writeHead(204);
+        res.end();
+      });
     });
   });
 };
