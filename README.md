@@ -35,6 +35,7 @@ The server you are running is at `server/app.js` and the `gif` logic is inside o
 Modules which are part of this project include:
 
 - `gifsockets` The heart of the `gifsockets project`, a mediator for subscribing any writable stream to newly written [GIF][] frames
+- `gifsockets-middleware` Plug and play middlewares to set up a server with `gifsockets` easily
 - `gif-encoder` A fork of [gif.js][] with stream support and is optimized for [node.js][] performance
 - `phantomjs-pixel-server` A [PhantomJS][] server which takes text and converts it to an `rgba` array of pixels
 
