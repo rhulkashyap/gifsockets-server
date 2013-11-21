@@ -11,3 +11,6 @@ var program = require('commander')
 // Create a server and start listening
 var app = new GifSocketsServer();
 app.listen(program.port);
+
+// Notify the user that we are listening
+console.log('gifsockets-server is listening at http://127.0.0.1:' + program.port + '/');

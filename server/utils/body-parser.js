@@ -5,7 +5,6 @@ module.exports = function getRawBodyFn (limit) {
       expected: req.headers['content-length'],
       limit: limit
     }, function (err, buffer) {
-      console.log('BODY-PARSE: Body parsed');
       // If there was an error (e.g. bad length, over length), respond poorly
       if (err) {
         res.writeHead(500, {

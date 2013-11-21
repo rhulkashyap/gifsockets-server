@@ -48,7 +48,6 @@ GifServer.prototype = {
   listen: function (port) {
     // Listen and notify the outside world
     this._app = this.app.listen(port);
-    console.log('gifsockets-server is listening at http://127.0.0.1:' + port + '/');
   },
   destroy: function (cb) {
     this._app.close(cb || function () {});
