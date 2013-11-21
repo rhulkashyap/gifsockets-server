@@ -1,24 +1,14 @@
-exports.openImage = function openImage (req, res) {
-  console.log('CONNECTION-ADDED');
-  res.writeHead(200, {
-    'connection': 'keep-alive',
-    'content-type': 'image/gif',
-    'transfer-encoding': 'chunked'
-  });
+var GifsocketMiddleware = require('gifsockets-middleware');
+// #GIFSOCKET-DIMENSIONS
+var gifsocketMw = GifsocketMiddleware({
+  width: 600,
+  height: 380
+});
 
-  // Add a listener (and write data to it magically)
-  req.gifsocket.addListener(res);
-};
-
-exports.closeImages = function (req, res) {
-  // Close all connections via gifsocket
-  req.gifsocket.closeAll(function allSocketsClosed () {
-    res.send(204);
-  });
-};
-
-exports.writeTextToImage = require('./writeTextToImage');
-exports.writeJsonToImage = require('./writeJsonToImage');
+// Expose openImage, writeJsonToImages, writeTextToImages, and closeOpenImages
+Object.getOwnPropertyNames(gifsocketMw).forEach(function (key) {
+  exports[key] = gifsocketMw[key];
+});
 
 // Render some jade into memory
 var fs = require('fs');

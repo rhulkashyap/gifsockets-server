@@ -1,6 +1,6 @@
 var express = require('express');
 var Gifsocket = require('gifsockets');
-
+var bodyParser = require('./utils/body-parser');
 var routes = require('./routes');
 
 function GifServer(port) {
@@ -28,12 +28,15 @@ function GifServer(port) {
 
   // Server logic
   app.get('/image.gif', routes.openImage);
-  app.post('/image/text', routes.writeTextToImage);
-  app.post('/image/json', routes.writeJsonToImage);
+
+  app.post('/image/text', bodyParser(1 * 1024 * 1024), // 1 mb
+    routes.writeTextToImages);
+  app.post('/image/json', bodyParser(10 * 1024 * 1024), // 10 mb
+    routes.writeJsonToImages);
   // TODO: Somehow assign each page an id and allow for closing via /close:id. See #5 comments
   // TODO: On server close, write out finish to all connections
   // TODO: On process close, close server
-  app.post('/image/close', routes.closeImages);
+  app.post('/image/close', routes.closeOpenImages);
 
   // Host 404 page
   app.all('*', routes[404]);
