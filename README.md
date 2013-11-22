@@ -7,7 +7,7 @@ Demo: http://console-log.2013.nodeknockout.com/
 
 `gifsockets-server` is a reimplementation of [videlalvaro/gifsockets][]. It was written in [Clojure][] and not trivial to set up, especially without any [Clojure][] experience.
 
-This projet is written in [JavaScript][] and use [gif-encoder][] for encoding and [PhantomJS][] for [canvas][] preparation.
+This project is written in [JavaScript][] and use [gif-encoder][] for encoding and [PhantomJS][] for [canvas][] preparation.
 
 [videlalvaro/gifsockets]: https://github.com/videlalvaro/gifsockets
 [Clojure]: http://en.wikipedia.org/wiki/Clojure
