@@ -1,4 +1,5 @@
-# gifsockets-server
+# gifsockets-server [![Build status](https://travis-ci.org/twolfson/gifsockets-server.png?branch=master)](https://travis-ci.org/twolfson/gifsockets-server)
+
 
 GIFSockets are never-ending animated [GIFs][GIF] for sending text and images between people.
 
