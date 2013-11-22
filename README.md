@@ -13,6 +13,7 @@ This projet is written in [JavaScript][] and use [gif-encoder][] for encoding an
 [Clojure]: http://en.wikipedia.org/wiki/Clojure
 [GIF]: http://en.wikipedia.org/wiki/Graphics_Interchange_Format
 [JavaScript]: http://en.wikipedia.org/wiki/ECMAScript
+[gif-encoder]: https://github.com/twolfson/gif-encoder
 [gif.js]: http://jnordberg.github.io/gif.js/
 [PhantomJS]: http://phantomjs.org/
 [canvas]: https://developer.mozilla.org/en-US/docs/HTML/Canvas
