@@ -1,4 +1,6 @@
 # gifsockets-server changelog
+0.38.1 - Updated URLs for demo/homepage
+
 0.38.0 - Updated fork link
 
 0.37.0 - Removed Node Knockout badge

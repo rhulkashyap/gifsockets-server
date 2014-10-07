@@ -1,7 +1,7 @@
 {
   "name": "gifsockets-server",
   "description": "Never-ending animated GIFs as a chat system",
-  "version": "0.38.0",
+  "version": "0.38.1",
   "homepage": "http://gifsockets.twolfson.com/",
   "author": {
     "name": "Todd Wolfson",
