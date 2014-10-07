@@ -3,7 +3,7 @@
 
 GIFSockets are never-ending animated [GIFs][GIF] for sending text and images between people.
 
-Demo: http://console-log.2013.nodeknockout.com/
+Demo: http://gifsockets.twolfson.com/
 
 `gifsockets-server` is a reimplementation of [videlalvaro/gifsockets][]. It was written in [Clojure][] and not trivial to set up, especially without any [Clojure][] experience.
 

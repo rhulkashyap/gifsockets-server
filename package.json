@@ -2,7 +2,7 @@
   "name": "gifsockets-server",
   "description": "Never-ending animated GIFs as a chat system",
   "version": "0.38.0",
-  "homepage": "http://console-log.2013.nodeknockout.com/",
+  "homepage": "http://gifsockets.twolfson.com/",
   "author": {
     "name": "Todd Wolfson",
     "email": "todd@twolfson.com",
