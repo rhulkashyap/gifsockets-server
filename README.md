@@ -23,7 +23,7 @@ To run this website locally:
 ```bash
 npm install -g gifsockets-server phantomjs-pixel-server
 phantomjs-pixel-server &
-gifsocket-server
+gifsockets-server
 # Website will be available at http://localhost:8000/
 ```
 
