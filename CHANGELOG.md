@@ -1,4 +1,6 @@
 # gifsockets-server changelog
+0.37.0 - Removed Node Knockout badge
+
 0.36.3 - Added upgrade for `npm` inside Travis CI to fix `node@0.8` issues
 
 0.36.2 - Fixed misplaced dependency for `commander`
