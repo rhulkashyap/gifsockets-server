@@ -1,4 +1,6 @@
 # gifsockets-server changelog
+0.36.2 - Fixed misplaced dependency for `commander`
+
 0.36.1 - Corrected command typo in documentation
 
 0.36.0 - Moved to `gifsockets-middleware` node module
