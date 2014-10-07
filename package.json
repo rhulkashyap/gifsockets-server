@@ -44,7 +44,8 @@
     "gif-encoder": "~0.4.0",
     "function-to-string": "~0.2.0",
     "gifsockets": "~0.1.0",
-    "gifsockets-middleware": "~0.1.0"
+    "gifsockets-middleware": "~0.1.0",
+    "commander": "~2.0.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -56,7 +57,6 @@
     "mocha": "~1.14.0",
     "phantomjs-pixel-server": "~0.1.0",
     "request": "~2.27.0",
-    "get-pixels": "~1.0.1",
-    "commander": "~2.0.0"
+    "get-pixels": "~1.0.1"
   }
 }
